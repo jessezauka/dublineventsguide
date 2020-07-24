@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load bootstrap_tags %}
+
+{% block content %}
+<!-- Blog posts Header -->
+<div class="container main-wrapper-index">
+	<section id="blogs-header">
+		{% include '_home_header.html' %}
+	</section>
+</div>
+<!-- /Blog posts Header -->
+
+<!-- Blogs card field-->
+<div class="container px-0">
+	<div class="grid-container">
+		{% for post in posts%}
+		<div class="card blog-card bg-warning">
+			{% if post.image %}
+			<img class="card-img-top" src="{{ MEDIA_URL }}{{ post.image }}" alt="{{ post.title }} | title image">
+			{% endif %}
+			<div class="card-body pt-2">
+				<p class="my-0"><strong class="lato mt-auto">{{ post.author }}</strong>
+					{% if post.author.profiles.contributor == True %}
+					<small> | Guest</small>
+					{% else %}
+					<small> | DOW</small>
+					{% endif %}
+				</p>
+				<p class="article-published m-0"><i class="fa fa-clock pr-2 text-secondary"></i><small
+						class="thin">{{ post.published_date }}</small>
+				</p>
+				<h5 class="card-title lato">{{ post.title }}</h5>
+				<p class="card-text pt-2 mb-5">{{ post.content | truncatewords:50 }}</p>
+				<a class="btn btn-sm btn-outline-dark lato read-more"
+					href="{% url 'posts:post_detail' pk=post.pk %}" data-tooltip="tooltip" data-placement="bottom"
+					title="Read this post" data-delay="50">Read post ></a>
+			</div>
+			<div class="card-footer d-flex align-items-end">
+				<small class="text-muted">Views {{ post.views }} | Comments {{ post.comments.count }}</small>
+			</div>
+		</div>
+		{% empty %}
+		<div class="container">
+			<div class="row no-gutters justify-content-center">
+				<div class="col-12 text-center">
+					<div class="jumbotron jumbotron-fluid">
+						<div class="container">
+							<h3 class="display-4 mb-3 thin">No blogs to see, sorry.</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	<div class="row justify-content-center no-gutters">
+		<div class="pagination col-xs-12 my-4">
+			<span class="step-links pagin-text lato">
+				{% if posts.has_previous %}
+				<a href="?page=1" class="pagin-anchor">&laquo; first</a>
+				<span>|</span>
+				<a href="?page={{ posts.previous_page_number }}" class="pagin-anchor">previous</a>
+				{% endif %}
+
+				<span class="current">
+					Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+				</span>
+
+				{% if posts.has_next %}
+				<a href="?page={{ posts.next_page_number }}" class="pagin-anchor">next</a>
+				<span>|</span>
+				<a href="?page={{ posts.paginator.num_pages }}" class="pagin-anchor">last &raquo;</a>
+				{% endif %}
+			</span>
+		</div>
+	</div>
+</div>
+
+<!-- / Blogs card field-->
+{% endblock %}

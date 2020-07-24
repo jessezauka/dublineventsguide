@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load bootstrap_tags %}
+{% load crispy_forms_tags %}
+
+
+{% block head_js %}
+<script src="https://js.stripe.com/v2/"></script>
+<script>
+	//<![CDATA[
+	Stripe.publishableKey = '{{ publishable }}';
+	//]]>
+</script>
+<script src="{% static 'js/stripe.js' %}"></script>
+{% endblock head_js %}
+
+{% block content %}
+<!-- Checkout Header -->
+<div class="container main-wrapper-index">
+	<section id="products-header">
+		<div class="row w-100 justify-content-left no-gutters content-div mb-3 mt-5 d-flex">
+			<div class="col">
+				<h2 class="section-title">Checkout</h2>
+			</div>
+			<div class="col headerRightElement backHome FyNorm clearfix">
+				<a href="{% url 'view_cart' %}" class="btn btn-link back-button text-dark" data-tooltip="tooltip"
+					data-placement="bottom" title="Back to cart" data-delay="50"><i
+						class="align-center home-arrow fa fa-chevron-left"></i>Cart</a>
+			</div>
+		</div>
+	</section>
+</div>
+<!-- /Checkout Header -->
+
+<!-- Checkout form -->
+<div class="container-md main-wrapper-index">
+	<div class="row row-flex">
+		<div class="col-xs-12 col-sm-7">
+			<form class="mb-5" method="post" id="payment-form" action="{% url 'checkout' %}">
+				{% csrf_token %}
+				<h4 class="mb-4">Payment Details</h4>
+
+				<div class="form-group">
+					{{ order_form | crispy }}
+				</div>
+				<div class="form-group">
+					{{ payment_form | crispy }}
+				</div>
+				<div id="credit-card-errors">
+					<div class="alert-message block-message text-danger lato FyMed error" id="stripe-error-message"></div>
+				</div>
+				<div class="form-group mt-5">
+					<input class="btn btn-dark" id="submit_payment_btn" name="commit" type="submit"
+						value="Submit Payment">
+				</div>
+			</form>
+		</div>
+		<div class="d-none d-sm-block col-sm-5">
+			<h4 class="pt-1">Cart</h4>
+			<div class="row mt-4 justify-content-center">
+				<div class="col-xs-12 col-lg-10 m-0 p-0 position-absolute pb-5" id="item-column">
+					<div class="row mt-2 no-gutters">
+						{% for item in cart_items %}
+						<div class="col-12 my-2">
+							<div class="card sales-card mx-xs-4">
+								<div class="checkout-product"
+									style="background-image: url('{{ MEDIA_URL }}{{ item.product.image_main }}'); ">
+								</div>
+								<!-- <div class="pl-3"> -->
+								<div class="card-body">
+									<h5>{{ item.product.make }} | {{ item.product.model }}</h5>
+									<div class="col-12 d-flex px-0">
+										<span class="lato scale mr-2"><strong>Mfr. </strong></span>
+										<span class="lato scale mr-2">{{ item.product.manufacturer }}</span>
+									</div>
+									<div class="col-12 d-flex px-0">
+										<span class="lato scale mr-2"><strong>Year: </strong></span>
+										<span class="lato scale mr-2">{{ item.product.date }}</span>
+									</div>
+									<div class="col-12 d-flex px-0">
+										<span class="lato scale mr-2"><strong>Color: </strong></span>
+										<span class="lato scale mr-2">{{ item.product.color }}</span>
+									</div>
+									<div class="col-12 d-flex px-0">
+										<span class="lato scale mr-2"><strong>Scale: </strong></span>
+										<span class="lato scale mr-2">{{ item.product.scale }}</span>
+									</div>
+									<div class="col-12 d-flex px-0">
+										<span class="lato scale mr-2"><strong>Price: </strong></span>
+										<span class="lato scale mr-2"><i
+												class="fa fa-euro"></i>{{ item.product.price | floatformat:2 }}</span>
+									</div>
+								</div>
+								<div class="card-footer p-2">
+									<span class="lato mr-2"><strong>Total</strong></span>
+									<i class="fa fa-euro"></i><strong class="lato price">
+										&nbsp; {{ item.total | floatformat:2 }}</strong>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row my-5">
+		<div class="col d-flex">
+			<div class="my-auto">
+				<h5 class="lato price">Grand total &nbsp;</h5>
+			</div>
+			<div class="my-auto pr-3">
+				<h5 class="lato price medium"><i class="fa fa-euro"></i>
+					&nbsp; {{ totals | floatformat:2 }}</h5>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /Checkout form -->
+{% endblock %}

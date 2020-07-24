@@ -1,0 +1,10 @@
+{% load bootstrap_tags %}
+{% if messages %}
+{% for message in messages %}
+<div {% if message.tags %} class="alert alert-{{ message.tags }} m-0" {% endif %}>
+	<div class="messages text-center">
+		{{ message }}
+	</div>
+</div>
+{% endfor %}
+{% endif %}

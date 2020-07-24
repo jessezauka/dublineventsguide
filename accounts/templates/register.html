@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load bootstrap_tags %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<!-- Register Header -->
+<div class="container main-wrapper-index">
+    <section id="generic-header">
+    {% include '_home_header.html' %}
+    </section>
+</div>
+<!-- / Register Header -->
+<!-- Register form -->
+<div class="container main-wrapper-index bg-light mb-5 py-5">
+    <div class="row d-flex justify-content-center no-gutters">
+        <div class="col-lg-8 col-md-10 col-sx-12 d-block mx-auto pt-3">
+            <p>If you already have an account, you can <a href="{% url 'login' %}">sign in </a></p>
+            <form method="POST">
+                {% csrf_token %} {{ user_form | crispy }}
+                <button type="submit" class="btn btn-dark">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- / Reister form -->
+{% endblock %}

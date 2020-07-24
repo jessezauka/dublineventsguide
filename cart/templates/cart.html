@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load bootstrap_tags %}
+
+
+{% block content %}
+<!-- Cart Header -->
+<div class="container main-wrapper-index">
+	<section id="generic-header">
+		<div class="row w-100 justify-content-left no-gutters content-div mb-3 mt-5 d-flex">
+			<div class="col">
+				<h2 class="section-title">Cart</h2>
+			</div>
+			<div class="col headerRightElement backHome FyNorm clearfix">
+				<a href="{% url 'products:all_products' %}" class="btn btn-link back-button clearfix text-dark"
+					data-tooltip="tooltip" data-placement="bottom" title="Back to sales" data-delay="50"><i
+						class="align-center home-arrow fa fa-chevron-left"></i>Sales</a>
+			</div>
+		</div>
+	</section>
+</div>
+<!-- / Cart Header -->
+<!-- Instructive overlay demo https://codepen.io/basiclaser/pen/OVWOdX for the overlay links which I used in carousel and Products card images -->
+<!-- Products card field-->
+<div class="container main-wrapper-sales mb-5 pb-5 px-0">
+
+	<section id="products-sales-field">
+		<div class="row clearfix no-gutters">
+			<!-- Products column (row start) -->
+			<div class="col-md-7 mb-4 no-p">
+				<!-- Product1 -->
+				{% for item in cart_items %}
+				<div class="card sales-card pr-0 mb-4">
+					{% if item.product.status == 'p' %}
+					<span class="badge badge-success promo-badge lato position-absolute mb-2">Promotion</span>
+					{% endif %}
+					<div class="row pr-0 no-gutters">
+						<div class="col-12 col-sm-7 col-md-12 col-lg-7 d-flex align-items-center no-p">
+							<div class="view product-detail h-100">
+								<img class="img-fluid card-img cart-product-image"
+									src="{{ MEDIA_URL }}{{ item.product.image_main }}"
+									alt="{{ item.product.make }} | {{ item.product.model }}">
+								<a data-toggle="modal" href="#productDetail{{ item.id }}" class="stretched-link"></a>
+								<div class="overlay m-0 p-0">
+									<div class="invite FyMed lato">SEE DETAILS...</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-sm-5 col-md-12 col-lg-5 px-md-3 pl-sm-0 pl-lg-0 pr-0">
+							<div class="card sales-card-no-border h-100">
+								<div class="card-body pt-4 pb-2 px-2">
+									<h5 class="card-title text-left my-0 mb-2 ml-2">
+										<strong class="lato">
+											{{ item.product.make }} | {{ item.product.model }}
+										</strong>
+									</h5>
+									<div class="row no-gutters">
+										<div class="col-12 d-flex ml-2">
+											<span class="lato scale mr-2"><strong>Mfr. </strong></span>
+											<span class="lato scale mr-2">{{ item.product.manufacturer }}</span>
+										</div>
+										<div class="col-12 d-flex ml-2">
+											<span class="lato scale mr-2"><strong>Year: </strong></span>
+											<span class="lato scale mr-2">{{ item.product.date }}</span>
+										</div>
+										<div class="col-12 d-flex ml-2">
+											<span class="lato scale mr-2"><strong>Color: </strong></span>
+											<span class="lato scale mr-2">{{ item.product.color }}</span>
+										</div>
+										<div class="col-12 d-flex ml-2">
+											<span class="lato scale mr-2"><strong>Scale: </strong></span>
+											<span class="lato scale mr-2">{{ item.product.scale }}</span>
+										</div>
+									</div>
+									<div class="row no-gutters">
+										<div class="col d-flex">
+											<div class="autoRight ml-2 my-auto"><strong class="lato price medium">
+													Price:</strong>
+											</div>
+											{% if item.product.old_price > 0 %}
+											<div class="autoRight mr-0"><i class="fa fa-euro"></i>
+												<span class="old-price">{{ item.product.old_price }} </span><strong
+													class="lato price medium">&nbsp;
+													{{ item.product.price | floatformat:2 }}</strong>
+											</div>
+											{% else %}
+											<div class="autoRight mr-0"><i class="fa fa-euro"></i>
+												<strong
+													class="lato price medium">{{ item.product.price | floatformat:2 }}
+												</strong>
+											</div>
+											{% endif %}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<form class="form p-0 m-0" method="post" action="{% url 'adjust_cart' item.id %}">
+						{% csrf_token %}
+						<div class="card-footer p-2">
+							<div class="row my-1 no-gutters">
+								<div class="col-md-6 d-flex clearfix pl-2">
+									<span class="autoRight my-auto">
+										<button class="btn btn-dark btn-sm amend text-light pl-0 add-to-cart px-2"
+											data-tooltip="tooltip" data-placement="bottom" title="Amend quantity"
+											data-delay="50">Amend</button>
+									</span>
+									<div class="form-group autoLeft pr-2 my-auto">
+										<div class="input-group">
+											<input name="quantity" type="number" min="0"
+												max="{{ item.product.in_stock }}" placeholder="{{ item.quantity }}"
+												class="form-control">
+											<div class="input-group-append">
+												<span class="input-group-text">Qty</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 order-first order-md-last d-flex clearfix pr-3">
+									<span class="autoRight my-auto pl-3">
+										<button class="btn btn-link disabled btn-sm text-dark pl-0 add-to-cart"
+											data-tooltip="tooltip" data-placement="bottom" title="Amend quantity"
+											data-delay="50"><strong>Total</strong></button>
+									</span>
+									<div class="autoLeft my-auto"><i class="fa fa-euro"></i><strong
+											class="lato price medium"> &nbsp; {{ item.total | floatformat:2 }}</strong>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="productDetail{{ item.id }}" tabindex="-1" role="dialog"
+					aria-labelledby="productDetailTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-scrollable" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="productDetailTitle">Description</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="w-100">
+								{% if product.image_sec %}
+								<img class="img-fluid card-img modal-product-image"
+									src="{{ MEDIA_URL }}{{ item.product.image_sec }}"
+									alt="{{ item.product.make }} | {{ item.product.model }}">
+								{% else %}
+								<img class="img-fluid card-img modal-product-image"
+									src="{{ MEDIA_URL }}{{ item.product.image_main }}"
+									alt="{{ item.product.make }} | {{ item.product.model }}">
+								{% endif %}
+							</div>
+							<div class="modal-body">
+								<p class="lato">{{ item.product.description }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% empty %}
+				<div class="container">
+					<div class="row no-gutters h-100 justify-content-center">
+						<div class="col-12 text-center">
+							<div class="jumbotron jumbotron-fluid">
+								<div class="container">
+									<h3 class="display-4 mb-3 thin">Cart is empty</h3>
+									<a href="{% url 'products:all_products' %}" class="btn btn-warning btn-large"
+										role="button">Take me to the shop</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+			<!-- /Products card1 -->
+			<!-- Totals card -->
+			<div class="col-md-5 mb-4">
+				<div class="card sales-card">
+					<div class="card-body pt-3 pb-2">
+						<h5 class="card-title mb-3 mt-2">
+							<strong class="lato">
+								Your shopping cart
+							</strong>
+						</h5>
+						{% if user.is_authenticated %}
+						{% else %}
+						<div class="row no-gutters">
+							<div class="col-12">
+								<a href="{% url 'login' %}" class="btn btn-block btn-dark btn-sm btn-block">Login</a>
+							</div>
+							<div class="col-12 mt-2"><p class="lato price text-warning text-center">
+									Login to checkout!
+								</p>
+							</div>
+
+						</div>
+						{% endif %}
+						<div class="row no-gutters mt-4">
+							<div class="col d-flex">
+								<div class="autoRight my-auto"><strong class="lato price">
+										Total</strong>
+								</div>
+								<div class="autoLeft my-auto pr-3"><i class="fa fa-euro"></i><strong
+										class="lato price medium">
+										&nbsp; {{ totals | floatformat:2 }}</strong>
+								</div>
+							</div>
+						</div>
+						<div class="row no-gutters mt-3 mb-2">
+							<div class="col">
+								{% if totals == 0 or not user.is_authenticated %}
+								<button class="btn btn-outline-secondary btn-block" disabled>Checkout</button>
+								{% else %}
+								<a href="{% url 'checkout' %}" class="btn btn-dark btn-default btn-block">Checkout</a>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+{% endblock %}

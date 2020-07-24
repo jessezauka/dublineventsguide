@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load bootstrap_tags %}
+{% load crispy_forms_tags%}
+
+{% block content %}
+<!--Contact Header -->
+<div class="container main-wrapper-index">
+	<section id="products-header">
+	{% include '_home_header.html' %}
+	</section>
+</div>
+<!-- /Contact Header -->
+<!-- Contact form -->
+<div class="container main-wrapper-index bg-light mb-5 py-5">
+	<div class="row d-flex justify-content-center no-gutters">
+		<div class="col-lg-8 col-md-10 col-sx-12 d-block mx-auto pt-3">
+			<p class="lato FyMed">To contact us for inquiries and question, fill in the below form.</p>
+			<form method="POST" class="top-buffer bottom-buffer">
+				{% csrf_token %}
+				{{ contact_form | crispy }}
+				<p class="lato FySmall">If you are interested becoming a contributor, mention that in the subject line.
+					Make sure you have included your email for us to contact you back.</p>
+				<button type="submit" class="btn btn-info btn-small" data-tooltip="tooltip" data-placement="bottom"
+					title="Send message" data-delay="50">Send Message</button>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- /Contact form -->
+
+{% endblock %}
