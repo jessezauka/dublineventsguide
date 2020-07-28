@@ -7,118 +7,27 @@
 <!-- Hero image -->
 <section id="hero-image">
 	<div class="topHeroWrap">
-		<img src="{% static 'img/master-img.jpg' %}" class="img-fluid mx-auto topHero" alt="Responsive image">
+		<img src="{% static 'img/stpatrics.jpg' %}" class="img-fluid mx-auto topHero" alt="Responsive image">
 	</div>
 </section>
 <!-- / Hero image -->
 
-<div class="container main-wrapper-index mt-0">
-	<!-- Login Header -->
-	<section id="generic-header">
-		<div class="container p-0">
-			<div class="row w-100 justify-content-left no-gutters content-div mb-3 mt-5 d-flex">
-				<div class="col-6">
-					<h2 class="section-title">Sales</h2>
-				</div>
-				<div class="col-6 carousel-control headerRightElement clearfix my-auto">
-					<i class="FyMed arrow fa fa-chevron-left prev mr-1"></i>
-					<i class="align-center FyMed arrow fa fa-chevron-right next"></i>
-				</div>
-			</div>
-		</div>
-	</section>
-</div>
-<!-- / Login Header -->
-
-<!-- Sales Carousel -->
-<!-- Instructive overlay demo https://codepen.io/basiclaser/pen/OVWOdX for the overlay links which I used in carousel and Products card images -->
-{% if products %}
-<section id="sales-carousel">
-	<div class="container-fluid main-wrapper-index">
-		<div class="responsive slider salesSlider clearfix" data-slick="{'slidesToShow': 4, 'slidesToScroll': 4}">
-			{% for item in products %}
-			<div class="sliderItem media position-relative">
-				<img src="{{ MEDIA_URL }}{{ item.image_main }}" class="slider-image"
-					alt="{{ item.make }} | {{ item.model }}">
-				<a href="{% url 'products:all_products' %}" class="stretched-link"></a>
-				<div class="carousel-overlay">
-					<div class="invite FyMed lato">TO SALES ></div>
-				</div>
-			</div>
-			{% endfor %}
-		</div>
-	</div>
-</section>
-{% else %}
-<div class="container-fluid">
-	<div class="row no-gutters justify-content-center">
-		<div class="col-12 text-center">
-			<div class="jumbotron jumbotron-fluid">
-				<div class="container">
-					<h3 class="display-4 mb-3 thin">This joyride is currently empty.</h3>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-{% endif %}
-<br><br><br>
-<!-- / Sales Carousel -->
-
 <!-- Highlight & Blogs -->
-<div class="container-fluid">
-	<div class="row no-gutters justify-content-center">
-		<div class="col-xs-12 col-sm-10">
-			<section id="highlights">
-				<div class="row w-100 no-gutters content-div mb-3 d-flex">
-					{% with highlights|first as highlight %}
-					<div class="col-lg-6 mb-3">
-						<h2 class="section-title">Highlights</h2>
-						<div class="blockquote text-muted pr-2 highlight-teaser">
-							<p class="mb-0 pt-3 pb-2">In this months highlights we present you
-								<strong>{{ highlight.make }} | {{ highlight.model }}</strong>
-								<br>
-								-&nbsp; with another awesome contender(s) competing for our readers appreciation.
-								Our monthly highlights are about the original cars behind the models.
-								Each month we present you originals of the models we have in our shop or which we are
-								planning to bring in.
-								This is a race! Only the winner will be promoted, and you are behind the wheel.
-								Cast your vote for a dream car you would like to see in our catalogue or in promotion.
-							</p>
-							<div class="blockquote-footer">Highlights of the month {% now 'F' %}</div>
-						</div>
 
-						<a class="btn btn-warning" href="{% url 'highlight:get_highlight' %}">Read more</a>
-					</div>
-					<div class="col-lg-6 pl-lg-4">
-						<img class="img-fluid img-responsive d-block pb-0"
-							src="{{ MEDIA_URL }}{{ highlight.image_main }}" alt="Highlight of the month">
-					</div>
-					{% endwith %}
-				</div>
-			</section>
 			<section id="blogs">
 				<div class="row w-100 justify-content-right no-gutters content-div mt-5 mb-5 d-flex clearfix">
 					<div class="col-lg-6 mb-4">
 						<img class="img-fluid d-block img-responsive blogs-image"
-							src="{% static 'img/index/sunset-big.jpg' %}" alt="Red classic sports car in a beautiful sunset">
+							src="{% static 'img/dublin.jpg' %}" alt="Dublin City Liffey Valley river">
 					</div>
 					<div class="col-lg-6 pl-lg-4">
-						<h2 class="section-title">Blogs</h2>
+						<h2 class="section-title">Dublin Events Guide welcomes you!</h2>
 						<div class="blockquote text-muted blogs-teaser">
-							<p class="mb-0"><strong>Contributor posts</strong> -&nbsp;
-								From the days models were mere duplicates of production vehicles, 
-								and their role in promoting car makers offerings, making and
-								collecting model cars has become a cultural phenomena on its own right. Today the culture is as
-								vibrant, diverse and strong as ever. This is not surprising, considering the fascinating story of cars in
-								pivotal historic moments, as part of our cultural heritage, aesthetics, economy and technological
-								evolution. Cars and models continue to appeal to our desires and dreams of adventure and freedom
-								they represent. Something we we can share over generational or cultural boundaries.
-								There are so many stories to tell...
+							<p class="mb-0">Welcome to the Dublin city events guide. <br />This event guide has started in 2020. <br />We are collecting free and paid events that took place in Dublin or around. <br />We hope you will enjoy your visit.
 							</p>
-							<div class="blockquote-footer">Someone famous in My memories</div>
+							<div class="blockquote-footer">DublinEvents Team</div>
 						</div>
-						<a class="btn btn-warning" href="{% url 'posts:get_posts' %}">Read more</a>
+						<a class="btn btn-warning" href="{% url 'products:all_products' %}">See All Events</a>
 					</div>
 				</div>
 			</section>
@@ -127,38 +36,23 @@
 			<!-- About -->
 			<section id="about">
 				<div class="row w-100 justify-content-left no-gutters content-div mb-3 mt-5 d-flex">
-					<h2 class="section-title">About</h2>
+					<h2 class="section-title">About us</h2>
 				</div>
 				<div class="row">
 					<div class="col mb-5">
 						<div class="article">
-							<p class="mr-2">Dow are B.W.
-								Smith, J.G.Wold and A. Roberts. We at DOW are passionate about cars and models.
-								And when we say passionate… we really mean it.
-								B.W. Smith, a true petrolhead, is the driving force behind Dow. From proud owner of die cast Ford Mustang Boss 429, to driving the real life breathing Dodge Challenger in those wild student years, to an owner os few timeless beauties seen also on this site. The pursue for dream wheels, from collecting matchbox cars, to driving in historic rallies after college, the passion has become his way of life, hobby and a job.
+							<p class="mr-2">
+                                Dublin Events Guide is an info hub listing kid friendly restaurants, fun activities and upcoming events, as well as featuring unique Irish brands and retailers.
 							</p>
-							<p class="mr-2"> Sharing our love for anything motor related brought us
-								together. Our different areas of expertise made us realise that a business
-								venture together would set us apart from what was already out there. We don’t just want to
-								sell you a model, we want you to love what you purchase! When you purchase a model
-								from DOW you know that you are dealing with people who share your passion and take a
-								pride in providing impeccable customer service.
+							<p class="mr-2"> It's a comprehensive guide to Dublin for those who want to explore and enjoy the capital and is fast becoming the go to guide for everything to do with your baby, child and teen.
 							</p>
-							<p class="mr-2">In 2012 the Dow’s Model Car Workshop opened its virtual doors to our customers from all
-								around the globe. We bring you customized model cars of highest quality, with deep knowledge in the field. You can expect us to manage you the best deals and the most sought out items in the market.
+							<p class="mr-2">
+                                Dublinguide.ie has been designed by me for tourists, parents, grandparents, childminders and for anyone who wakes up and wonders what to do with the kids today.
 							</p>
-							<p class="mr-2">We specialize in 1/43 and 1/18 scale model cars by manufacturers including
-								C.A.R.S, Modelthat, Nr.one, Aston Originals, Precious and many others.
-								As enthusiasts, our interests are mainly in European classics, but surely, we do not discriminate. We regularly bring interesting additions to our collection from all
-								corners of the car world. What matters to us is the quality and the value for investment.
+                        <p class="mr-2">
+                        Hopefully this site will become your go to guide for everything to do with your baby, toddler and child in Dublin. Enjoy, I hope you have as much fun exploring Dublin with kids as I do.
 							</p>
-							<p class="mr-2"> And if you do not find what you are looking for, stay tuned or throw us with a message.
-								There are many well-loved models in the pipeline which we will add to our catalog
-								as they are released. Meanwhile, get to know our highlights contenders for this month.
-								And don't forget our blog section for stories, intrigue and tidbits from our contributors
-								A. Roberts, J.G. Wolf and guests. Or apply to become a contributor yourself.
-							</p>
-							{% if not user.is_authenticated %}
+                            {% if not user.is_authenticated %}
 							<p class="mr-2">New to this site?
 								<a class="lato text-warning text-uppercase mx-2" href="{% url 'register' %}" data-tooltip="tooltip"
 							data-placement="bottom" title="Register" data-delay="50">Sign in
@@ -168,41 +62,6 @@
 							</p>
 							{% endif %}
 						</div>
-					</div>
-				</div>
-			</section>
-			<hr>
-			<section id="contributors">
-				<div class="mt-5 py-5 text-center">
-					<div class="row">
-						<div class="mx-auto col-md-12">
-							<h2 class="mb-3 section-title">Contributors</h2>
-						</div>
-					</div>
-					<div class="row d-flex justify-content-center">
-						<div class="col-lg-4 col-6 py-4 px-0"> <img
-								class="img-fluid d-block mb-3 mx-auto rounded-circle employee-image"
-								src="{% static 'img/employees/profile1.png' %}" alt="CEO profile image">
-							<h4> <b>B. W. Smith</b> </h4>
-							<p class="mb-0">CEO | Sales</p>
-						</div>
-						<div class="col-lg-4 col-6 py-4 px-0"> <img
-								class="img-fluid d-block mb-3 mx-auto rounded-circle employee-image"
-								src="{% static 'img/employees/profile3.jpg' %}" alt="Co-founder profile image">
-							<h4> <b>J. G. Wolf</b> </h4>
-							<p class="mb-0">Co-founder | Contributor</p>
-						</div>
-						<div class="col-lg-4 col-6 py-4 px-0"> <img
-								class="img-fluid d-block mb-3 mx-auto rounded-circle employee-image"
-								src="{% static 'img/employees/profile2.jpg' %}" alt="Expert profile image">
-							<h4> <b>A. Roberts</b> </h4>
-							<p class="mb-0">Expert | Contributor</p>
-						</div>
-					</div>
-					<div class="row d-flex justify-content-center">
-						<a href="{% url 'contact:contact' %}" class="lato text-warning FyMed mt-3" data-tooltip="tooltip"
-							data-placement="bottom" title="Contact us" data-delay="50">We are always looking for
-							contributors to our team. Interested in joining?</a>
 					</div>
 				</div>
 			</section>

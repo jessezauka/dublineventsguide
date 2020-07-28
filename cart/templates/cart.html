@@ -14,7 +14,7 @@
 			</div>
 			<div class="col headerRightElement backHome FyNorm clearfix">
 				<a href="{% url 'products:all_products' %}" class="btn btn-link back-button clearfix text-dark"
-					data-tooltip="tooltip" data-placement="bottom" title="Back to sales" data-delay="50"><i
+					data-tooltip="tooltip" data-placement="bottom" title="Back to events" data-delay="50"><i
 						class="align-center home-arrow fa fa-chevron-left"></i>Sales</a>
 			</div>
 		</div>
@@ -52,27 +52,19 @@
 								<div class="card-body pt-4 pb-2 px-2">
 									<h5 class="card-title text-left my-0 mb-2 ml-2">
 										<strong class="lato">
-											{{ item.product.make }} | {{ item.product.model }}
+											{{ item.product.title }}
 										</strong>
 									</h5>
 									<div class="row no-gutters">
 										<div class="col-12 d-flex ml-2">
-											<span class="lato scale mr-2"><strong>Mfr. </strong></span>
-											<span class="lato scale mr-2">{{ item.product.manufacturer }}</span>
+											<span class="lato scale mr-2"><strong>Place: </strong></span>
+											<span class="lato scale mr-2">{{ item.product.place }}</span>
 										</div>
 										<div class="col-12 d-flex ml-2">
-											<span class="lato scale mr-2"><strong>Year: </strong></span>
+											<span class="lato scale mr-2"><strong>Date: </strong></span>
 											<span class="lato scale mr-2">{{ item.product.date }}</span>
 										</div>
-										<div class="col-12 d-flex ml-2">
-											<span class="lato scale mr-2"><strong>Color: </strong></span>
-											<span class="lato scale mr-2">{{ item.product.color }}</span>
 										</div>
-										<div class="col-12 d-flex ml-2">
-											<span class="lato scale mr-2"><strong>Scale: </strong></span>
-											<span class="lato scale mr-2">{{ item.product.scale }}</span>
-										</div>
-									</div>
 									<div class="row no-gutters">
 										<div class="col d-flex">
 											<div class="autoRight ml-2 my-auto"><strong class="lato price medium">

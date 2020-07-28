@@ -8,21 +8,18 @@ admin.site.register(Vote)
 class PostAdmin(admin.ModelAdmin):
     list_display = (
         'status',
-        'make',
-        'model',
+        'title',
         'votes',
     )
     list_filter = (
         'status',
-        'make',
-        'model',
+        'title',
         'date',
         'votes'
     )
     search_fields = (
         'status',
-        'make',
-        'model',
+        'title',
         'date'
     )
     actions = ['highlight', 'activate', 'deactivate']
@@ -42,27 +39,21 @@ class PostAdmin(admin.ModelAdmin):
     list_display = (
         'status',
         'in_stock',
-        'make',
-        'model',
+        'title',
         'date',
-        'manufacturer',
-        'color'
+        'place',
     )
     list_filter = (
         'status',
-        'make',
-        'model',
+        'title',
         'date',
-        'manufacturer',
-        'color'
+        'place',
     )
     search_fields = (
         'status',
-        'make',
-        'model',
+        'title',
         'date',
-        'manufacturer',
-        'color'
+        'place',
     )
     actions = ['promote', 'soldout', 'out_of_stock', 'on_sales']
 

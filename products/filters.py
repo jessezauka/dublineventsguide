@@ -3,14 +3,11 @@ from .models import Product
 
 
 class ProductFilter(django_filters.FilterSet):
-    manufacturer = django_filters.AllValuesFilter(
-        field_name="manufacturer"
+    place = django_filters.AllValuesFilter(
+        field_name="place"
     )
-    make = django_filters.AllValuesFilter(
-        field_name="make"
-    )
-    model = django_filters.AllValuesFilter(
-        field_name="model"
+    title = django_filters.AllValuesFilter(
+        field_name="title"
     )
 
     o = django_filters.OrderingFilter(
@@ -21,5 +18,4 @@ class ProductFilter(django_filters.FilterSet):
     )
 
     class Meta:
-        model = Product
-        fields = ['manufacturer', 'make', 'model']
+        fields = ['place', 'title']

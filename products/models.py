@@ -11,10 +11,10 @@ STATUS_CHOICES = [
 
 
 class Original(models.Model):
-    make = models.CharField(max_length=200, blank=True)
-    model = models.CharField(max_length=300, blank=True)
+    title = models.CharField(max_length=300, blank=True)
     description = models.TextField(blank=True)
-    date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    date = models.DateTimeField(editable=True)
+    model = models.CharField(max_length=300, blank=True)
     image_main = models.ImageField(upload_to="original_images", blank=True)
     image_two = models.ImageField(upload_to="original_images", blank=True)
     image_three = models.ImageField(upload_to="original_images", blank=True)
@@ -43,13 +43,11 @@ PRODUCT_STATUS_CHOICES = [
 ]
 
 class Product(models.Model):
-    make = models.CharField(max_length=200, default='')
-    model = models.CharField(max_length=300, default='')
+    title = models.CharField(max_length=300, default='')
     description = models.TextField()
-    scale = models.CharField(max_length=60, default='')
-    manufacturer = models.CharField(max_length=200, default='')
-    date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    color = models.CharField(max_length=30, default='', blank=True)
+    model = models.CharField(max_length=300, blank=True)
+    place = models.CharField(max_length=200, default='')
+    date = models.DateTimeField(editable=True)
     price = models.DecimalField(
         max_digits=6, decimal_places=2, default=0
     )
