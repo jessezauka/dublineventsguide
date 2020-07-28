@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'bootstrap_modal_forms',
     'django_filters',
     'widget_tweaks',
+    'ckeditor',
     'webp_converter',
     # Project apps
     'home',
