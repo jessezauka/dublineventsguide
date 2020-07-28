@@ -87,7 +87,6 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
                 'cart.contexts.cart_contents',
-                'webp_converter.context_processors.webp_support',
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',
