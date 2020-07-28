@@ -1,5 +1,4 @@
 from django.db import models
-from ckeditor.fields import RichTextField
 from django.utils import timezone
 from django.contrib.auth.models import User
 
@@ -14,7 +13,7 @@ POST_STATUS_CHOICES = [
 class Post(models.Model):
     """A single Blog post"""
     title = models.CharField(max_length=200)
-    content = RichTextField()
+    content = models.TextField()
     author = models.ForeignKey(
         User, max_length=20, on_delete=models.SET_NULL,
         null=True, default="DOWadmin", related_name='posts'

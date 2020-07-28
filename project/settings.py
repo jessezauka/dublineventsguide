@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'bootstrap_modal_forms',
     'django_filters',
     'widget_tweaks',
-    'ckeditor',
     'webp_converter',
     # Project apps
     'home',
@@ -100,8 +99,6 @@ TEMPLATES = [
 ]
 
 CRISPY_TEMPLATE_PACK = 'uni_form'
-
-CKEDITOR_BASEPATH = "/my_static/ckeditor/ckeditor/"
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
