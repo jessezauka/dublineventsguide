@@ -1,1 +1,1 @@
-web: gunicorn dublineventsguide.wsgi:application
+web: gunicorn project.wsgi:application
