@@ -25,7 +25,6 @@ urlpatterns = [
     path('contact/', include('contact.urls')),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('accounts.urls_reset')),
-    path('highlight/', include('highlight.urls')),
     path('posts/', include('posts.urls')),
     path('products/', include('products.urls')),
     path('cart/', include('cart.urls')),
