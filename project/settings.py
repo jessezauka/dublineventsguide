@@ -106,7 +106,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 if "DATABASE_URL" in os.environ:
     print("Postgres in use")
     DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+        'default': dj_database_url.parse('postgres://jftntzeqjarqnd:dcf796e3549de0e1c1a16cda91f211f4355940ad2999ee24cd84afc4cb06c769@ec2-18-203-62-227.eu-west-1.compute.amazonaws.com:5432/d8p8r20iff6a90')
     }
 else:
     print("Postgres URL not found, using sqlite3 instead")
