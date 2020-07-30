@@ -162,7 +162,7 @@ STRIPE_SECRET = os.getenv('STRIPE_SECRET')
 if 'DEBUG' in os.environ:
     print('Using SMPT setting from email backend')
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    DEFAULT_FROM_EMAIL = 'admin@dow.com'
+    DEFAULT_FROM_EMAIL = 'admin@dublinguide.ie'
     EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
     EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
     EMAIL_USE_TLS = True
@@ -171,7 +171,7 @@ if 'DEBUG' in os.environ:
 else:
     print('Use console email backend')
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DEFAULT_FROM_EMAIL = 'admin@dow.com'
+    DEFAULT_FROM_EMAIL = 'admin@dublinguide.ie'
     EMAIL_USE_TLS = False
     EMAIL_PORT = 1025
 
