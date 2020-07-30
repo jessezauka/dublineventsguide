@@ -1,10 +1,3 @@
-/* The html views and css style development were started at https://github.com/Junon72/DOW-UI.
-/* I wanted to keep the UI development separate from the back end development workspace especially at the beginning.
-/* This allowed me to focus on one area of development at the time and test the visual features before
-/* implementing them to the project.
-
-
-
 /* Titles / Subtitles / Headers / Paragraphs */
 
 
@@ -16,7 +9,7 @@ p {
 }
 
 a, a:hover, a:focus {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .FyNorm {
@@ -340,7 +333,7 @@ a.footer-nav .fa:hover,
 	height: 160px;
 }
 
-/* ------------------------------------------------ Products.html.html */
+/* ------------------------------------------------ Products/Events.html.html */
 
 .main-wrapper-sales {
 	z-index: 1;

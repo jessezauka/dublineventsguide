@@ -13,7 +13,7 @@ def all_products(request):
     context = {
         'filter': f,
         'sales_page': 'active',
-        'title': 'Sales'
+        'title': 'Events'
     }
     return render(request, "products.html", context)
 
