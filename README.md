@@ -177,7 +177,7 @@ Required technologies:
 * PostgreSQL
 * AWS S3
 
-### Deployment
+## Deployment
 - The code was developed locally using PyCharm.
 - Code was then pushed to GitHub.
 - Code was then deployed on Heroku.
@@ -190,7 +190,7 @@ In order to run DublinEventsGuide-django locally you are adviced to follow the s
 
 Before starting make sure you have the following:
 
-- Python3] to run the application.
+- Python3 to run the application.
 - GIT for cloning and version control.
 - PyCharm (or any suitable IDE) to develop your project.
 - PIP to install all requirements for the app.
@@ -198,7 +198,7 @@ Before starting make sure you have the following:
 Also, You will <strong>need to</strong> create accounts with the following online services in order to run this project.
 - Stripe for the payment service.
 
-#### Instructions:
+### Instructions:
 
 WARNING: You may need to follow a different guide based on the OS you are using, read more [here](https://python.readthedocs.io/en/latest/library/venv.html")
 
@@ -221,7 +221,7 @@ python3 -m .venv venv
 pip3 -r requirements.txt
 ```
 
-* 6: Within your IDE now <strong>create</strong> a file where you can store your secret information for the app, I used vscodes settings.json however you can just create an env.py file if you wish.
+* 6: Within your IDE now <strong>create</strong> a file where you can store your secret information for the app, I used PyCharm settings.json however you can just create an env.py file if you wish.
 
 ```bash
 {
@@ -258,7 +258,7 @@ python3 manage.py runserver
 
 Congratulations, DublinEventsGuide is now running locally!
 
-#### Deploying DublinEventsGuide to Heroku:
+### Deploying DublinEventsGuide to Heroku:
 
 * 1: <strong>Create</strong> a requirements.txt file using the following command.
 ```bash
