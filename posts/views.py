@@ -25,7 +25,7 @@ def get_posts(request):
     context = {
         'posts': posts,
         'blogs_page': 'active',
-        'title': 'Blogs'
+        'title': 'Blog'
         }
     return render(request, "blogposts.html", context)
 
