@@ -1,9 +1,9 @@
-#Dublin Events Guide
+# Dublin Events Guide
 
-###Aim and the basis of the project Dublin guide
+### Aim and the basis of the project Dublin guide
 Failte Ireland's research back in 2018 showed that the tourist flow to Ireland grew by 6.5% in 2018 to 9.6 million, and their expenditure amounted to a stunning 5.6billion. The absolute majority(69%) of those tourists came to Dublin by this estimate, spending almost 2.2billion. The same research discovered that most of those tourists relied on information found on two principal sources: books and guides, and the internet. These numbers alone inspired me to start the Dublin guide project as part of my final project with Code Institute. I understand that there is still a lack of useful one-stop resources for guests coming to Dublin as all information is scattered all over the internet. Therefore I decided that I will base my project on this particular issue.
 This project has multiple aims depending on the angle that we take. 
-###Regular visitor stories
+### Regular visitor stories
 For a regular visitor from the internet (random user), the website should provide:
 * Easy and comprehensive list of venues and events that are happening in Dublin;
 * Descriptions of the most popular and not so well known tourist locations;
@@ -21,7 +21,7 @@ User2 is coming from Galway to Dublin to work for two weeks. He knows Dublin and
 Acceptance criteria1: build a blog that describes Dublin's various parts, reports of past events that the Galway lad could later discuss with local people
 
 Acceptance criteria2: make the events list with the purchasing functionality that the Galway lad could buy the tickets to the events in advance and have a fun time after work.
-##Business owner stories
+## Business owner stories
 For the business benefiting from the stream of tourists, this website would provide the following:
 * A great place to advertise free venues;
 * A great place to sell tickets to the paid sites and events;
@@ -33,17 +33,17 @@ I considered the following story:
 
 User3 is a tour operator who is looking for new leads for his bus trips around Dublin. 
 Acceptance criteria3: The business owner contacts the owner of the website and agrees to list his trip to the event guide and sell his tour tickets there. The site owner gets a small commission for every ticket sold.
-##Site owner stories:
+## Site owner stories:
 A site owner primarily benefits by earning his extra or a full-time income by managing the project. For him, this project provides:
 * A tool to publish and showcase events, venues, places and tours that you can find in Dublin;
 * A stream of royalties from the sales of event tickets;
 * An income stream from the paid advertising;
 * A profit share from the tour organizations. 
-###Project Creator:
+### Project Creator:
 This project is a **Full Stack Frameworks with Django Milestone Project** part of my study in Full Stack Software Development at Code Institute. The goal is to build a project that has a Django backend connected to a relational database and to create a website that allows users to store and manipulate data records through a CMS powered by Django. My goal was to build a one-stop e-commerce shop for all events and venues in Dublin with a blog and a ticket shopping functionality.
  
-###UX
-####User expectation
+### UX
+#### User expectation
 The website's random user needs to feel this website can provide answers to all of his questions and a comprehensive solution to plan his trip from A to Z, including the ability to purchase tickets to the events.  The business owner needs to feel that this website is a good source of quality leads. He also needs to know that the user experience is excellent and that his business reputation would not suffer from being featured on low-quality partner websites.
 
 Meeting user expectations
@@ -56,7 +56,7 @@ There are three ways that I try to meet the user's expectations:
 
 I will describe all three in more detail. 
 
-####Layout and structure.
+#### Layout and structure.
 The website has a simple, easy to understand layout and structure based on a Mobile-first approach.  There are three main sections: the header, the main container, and the footer section. The header section features a logo and a fixed navigation to enhance user experience.
 The navigation bar turns into a burger menu when the screen gets reduced in size. Based on the authentication of the user, the links can vary. If the a hasn't logged in "Login" and "Register" links are displayed. After the user logs in, then "Profile" and "Logout" links are shown in the navbar. The website has it's cart link displayed in all cases.  I indented the footer to the left of the page. This footer features a link to contact us page, a set of social media icons, and a business location. 
 The main content of the home page features a large slide with a photo taken at one of the St Patrick's festivals. 
@@ -67,13 +67,13 @@ The layout of an event description page is sleek, featuring a bunch of photos di
 Such layout is very convenient for users as it doesn't overwhelm them with too much information and a neverending stream of pictures. 
 The blog page features all blogs displayed in a grid format. Each cell has its picture, a brief description of the blog post, and a link to read more. A lovely feature that I implemented to enhance the user experience of the blog page is the overall count of views and the comments that each blog post has achieved. 
 The shopping cart page provides a clear and transparent view of all items added and the total payable amount. The number of purchases in the cart is displayed in the navbar as the cart icon will display a number (if not zero.)
-####Design
+#### Design
 The emotional impact of interface colors and fonts is significant in any project as they have a massive effect on a **user's** perception. I tried creating a friendly, open, and transparent feel with the colors I selected. Therefore the primary colors I decided to incorporate are:
 white- to communicate the transparency of the website;
 Warm grey - rgb(52,58,64) - to demonstrate professionalism and trustworthiness;
 Warm Yellow - rgb(255,193,7) - to provide a friendly and warm feel. 
 The fonts are also critical when designing a project. Therefore I decided to go with clean and open Lato from the Serif family of fonts. With the color scheme and fonts, I think I achieved what I wanted - an airy, warm, and welcoming feel of the website that can be trusted by all of its users.
-####Features
+#### Features
 the tiny features are significant enhancers to user experience. They say that the devil is in details. The simple already mentioned things like the count of comments and views on blog posts, easy to click shopping interface, the image slider and the easy to understand pagination are the main features that add to the user experience of Dublin guide. I implemented the following features that enhance user experience :
 * A logo that takes back to the home page when clicked;
 * A sticky navbar that lets users easily switch between pages without scrolling back to the top;
@@ -86,12 +86,12 @@ the tiny features are significant enhancers to user experience. They say that th
 * The possibility for a logged-in user to update their information;
 * Contact form for easy communication with the website owner.
 
-####Functionality
+#### Functionality
 From the functionality point of view, the website consists of 3 main areas:
 * Admin
 * Authorized user (registered and logged in user)
 * Unauthorized user (a random visitor)
-####Admin area
+#### Admin area
 Inside the Admin area, I fully implemented the full CRUD functionality to affect and manipulate data in the database. 
 Admin has the following functions:
 * Create, update and delete blog posts, add the blog images
@@ -100,7 +100,7 @@ Admin has the following functions:
 * See user information such as login names and salted passwords
 * Check sales information 
 * Approve comments on blog posts, read messages.
-####User area
+#### User area
 There are two types of users: logged in users (authorized) and users who have not logged in or not registered (unauthorized). They have very similar functionality; however, the registered and logged in users can do more. 
 
 Basic functionality that is available to both types of users:
@@ -120,7 +120,7 @@ Authorized/registered users can mainly perform the following critical activities
 
 All other functionalities on the website are the same for both - registered users and unregistered users.
 
-###Functionalities left to implement
+### Functionalities left to implement
 **Change password**
 * The users could be able to update their passwords from their profile page through receiving an email with instructions on how to reset the password.
 
@@ -130,7 +130,7 @@ All other functionalities on the website are the same for both - registered user
 **Submit events via an online form**
 * Businesses could have the functionality to submit their events, blog post suggestions, and tours via online form. They could also have a dedicated user area.
 
-##Wireframes
+## Wireframes
 
 ### Home page
 
@@ -223,4 +223,4 @@ Set up environment variables on Heroku for:
 ## Acknowledgements
 - Code Institute for the lessons and basis for the app.
 - Code Institute tutors from their guidance and expertise. 
-- Stack Overflow and W3Schools for trouble-shooting. 
+- Stack Overflow and W3Schools for trouble-shooting.
