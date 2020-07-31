@@ -178,47 +178,113 @@ Required technologies:
 * AWS S3
 
 ### Deployment
-- The code was developed locally using Gitpod.
+- The code was developed locally using PyCharm.
 - Code was then pushed to GitHub.
-- Travis was then used for continuous integration.
-- Code was then deployed on heroku.
+- Code was then deployed on Heroku.
 
 Deployed app can be viewed [here.](https://dublineventsguide.herokuapp.com/)
 
 GitHub Repo [here](https://github.com/jessezauka/dublineventsguide)
 
+In order to run DublinEventsGuide-django locally you are adviced to follow the steps below. 
 
-`pip3 install django=3.07` The framework used.
+Before starting make sure you have the following:
 
-`pip3 install Pillow` A python package that allows images to be uploaded. 
+- Python3] to run the application.
+- GIT for cloning and version control.
+- PyCharm (or any suitable IDE) to develop your project.
+- PIP to install all requirements for the app.
 
-`pip3 install django-forms-bootstrap` To render our forms with bootstrap styling.
+Also, You will <strong>need to</strong> create accounts with the following online services in order to run this project.
+- Stripe for the payment service.
 
-`pip3 install django-storages` To set up media and static transfer on S3
+#### Instructions:
 
-`python3 manage.py collectstatic` To send all media and static directories to S3
+WARNING: You may need to follow a different guide based on the OS you are using, read more [here](https://python.readthedocs.io/en/latest/library/venv.html")
 
-`pip3 install psycopg2`
+* 1: <strong>Clone</strong> DublinEventsGuide-django repository by either downloading from <a href="https://github.com/jessezauka/dublineventsguide">here</a> or type the following command into your terminal.
+```bash
+git clone https://github.com/jessezauka/dublineventsguide
+```
+* 2: <strong>Navigate</strong> to this folder in your terminal.
+* 3: <strong>Enter</strong> the following command into your terminal.
+```bash
+python3 -m .venv venv
+```
+* 4: <strong>Initialize</strong> the environment by using the following command.
+```bash
+.venv\bin\activate
+```
 
-`pip3 install dj-database-url==0.5.0` To handle postgres database.
+* 5: <strong>Install</strong> the requirements and dependancies from the requirements.txt file
+```bash
+pip3 -r requirements.txt
+```
 
-- Create a new app on Heroku and link to your local repo.
-- Create a requirements.txt and Procfile.
+* 6: Within your IDE now <strong>create</strong> a file where you can store your secret information for the app, I used vscodes settings.json however you can just create an env.py file if you wish.
 
-`pip3 freeze --local > requirements.txt` To tell Heroku what packages are required to run this program.
+```bash
+{
+    "python.pythonPath": "/usr/local/bin/python3",
+    "python.terminal.activateEnvironment": true,
+    "python.linting.enabled": true,
+    "files.autoSave": "onFocusChange",
+    "files.useExperimentalFileWatcher": true,
+    "terminal.integrated.env.osx": {
+      "SECRET_KEY": "<your_secret_key_here>",
+      "DEV": "1",
+      "STRIPE_PUBLISHABLE": "<your_stripe_publishable_key_here>",
+      "STRIPE_SECRET": "<your_stripe_secret_key_here>",
+      "DATABASE_URL": "<your_database_url_here>",
+}
+```
 
-`echo web: python app.py > Procfile` To tell Heroku what type of application this is.
+* 7: <strong>Enter</strong> the following command into the terminal to migrate models into database.
+```bash
+python3 manage.py migrate
+```
 
-- Push to github
-- Create a new app on Heroku.
-- Add postgres database as a resource.
+* 8: Then you need to <strong>Create</strong> a 'superuser' for the project using the terminal, enter the following command.
+```bash
+python3 manage.py createsuperuser
+```
 
-Set up environment variables on Heroku for:
-- STRIPE_PUBLISHABLE
-- STRIPE_SECRET
+Once the database migrations and superuser have been successfully completed, Django should migrate the existing *migrations.py* files from each app to configure a relational schema.
 
-- Link up GitHub
-- Run deploy.
+* 9: The app can now be ran locally using the following command.
+```bash
+python3 manage.py runserver
+```
+
+Congratulations, DublinEventsGuide is now running locally!
+
+#### Deploying DublinEventsGuide to Heroku:
+
+* 1: <strong>Create</strong> a requirements.txt file using the following command.
+```bash
+pip3 freeze > requirements.txt
+```
+
+* 2: <strong>Create</strong> a procfile with the following command.
+```bash
+echo web: python3 app.py > Procfile
+```
+* 3: Push these newly created files to your repository.
+* 4: Create a new app for this project on the Heroku Dashboard.
+* 5: Select your deployment method by clicking on the deployment method button and select GitHub.
+* 6: On the dashboard, set the following config variables:
+
+**Key**|**Value**
+:-----:|:-----:
+DATABASE\_URL|<your\_database\_url>
+SECRET\_KEY|<your\_secret\_key>
+STRIPE\_PUBLISHABLE|<your\_stripe\_publishable\_key>
+STRIPE\_SECRET|<your\_stripe\_secret\_key>
+
+* 7: <strong>Click</strong> the deploy button on the heroku Dashboard.
+* 8: Wait for the build to finish and click the view project link once it has!
+
+Congratulations, DublinEventsGuide is now hosted on Heroku and is live!
 
 ## Acknowledgements
 - Code Institute for the lessons and basis for the app.
