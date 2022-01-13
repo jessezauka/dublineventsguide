@@ -50,7 +50,7 @@ urllib3 = "==1.25.9"
 wrapt = "==1.12.1"
 zipp = "==3.1.0"
 Django = "==3.0.7"
-Pillow = "==7.1.2"
+Pillow = "==9.0.0"
 
 [requires]
 python_version = "3.8"
